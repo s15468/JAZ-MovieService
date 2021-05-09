@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import pl.pjatk.JulCho.Movie.Model.Movie;
+import pl.pjatk.JulCho.Movie.Service.MovieService;
 
 import java.util.List;
 
@@ -14,19 +15,14 @@ public class MovieController
     @GetMapping("")
     public ResponseEntity<List<Movie>> getAllMovies()
     {
-        List<Movie> moviesList = List.of(
-                new Movie(1, "test", "test"),
-                new Movie(2, "Test2", "test2")
-        );
-
-        return ResponseEntity.ok(moviesList);
+        return ResponseEntity.ok(new MovieService().moviesList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable String id)
     {
         if (Integer.parseInt(id) == 1)
-            return ResponseEntity.ok(new Movie(1, "Test","Test"));
+            return ResponseEntity.ok(new Movie("Test","Test"));
         else
             return ResponseEntity.badRequest().build();
     }

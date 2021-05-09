@@ -8,13 +8,6 @@ public class Movie {
     private String Name;
     private MovieEnums.Category Category;
 
-    public Movie(int id, String name, String category)
-    {
-        this.Id = id;
-        this.Name = name;
-        this.Category = MovieEnums.Category.valueOf(category);
-    }
-
     public Movie(String name, String category)
     {
         this.Id = 1;
@@ -35,6 +28,11 @@ public class Movie {
     public Enum getCategory()
     {
         return Category;
+    }
+
+    public void setId(long id)
+    {
+        this.Id = id;
     }
 
     public void setName(String name)
