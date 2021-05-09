@@ -48,4 +48,13 @@ public class MovieService
         else
             return (ResponseEntity<Movie>) ResponseEntity.badRequest();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable String id)
+    {
+        if (id != null)
+            return (ResponseEntity<Void>) ResponseEntity.noContent();
+        else
+            return (ResponseEntity<Void>) ResponseEntity.notFound();
+    }
 }
