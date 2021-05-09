@@ -1,26 +1,28 @@
 package pl.pjatk.JulCho.Movie.Model;
 
+import pl.pjatk.JulCho.Movie.Enums.MovieEnums;
+
 public class Movie {
 
-    private int Id;
+    private long Id;
     private String Name;
-    private String Category;
+    private MovieEnums.Category Category;
 
     public Movie(int id, String name, String category)
     {
         this.Id = id;
         this.Name = name;
-        this.Category = category;
+        this.Category = MovieEnums.Category.valueOf(category);
     }
 
     public Movie(String name, String category)
     {
         this.Id = 1;
         this.Name= name;
-        this.Category = category;
+        this.Category = MovieEnums.Category.valueOf(category);
     }
 
-    public int getId()
+    public long getId()
     {
         return Id;
     }
@@ -30,7 +32,7 @@ public class Movie {
         return Name;
     }
 
-    public String getCategory()
+    public Enum getCategory()
     {
         return Category;
     }
@@ -42,6 +44,6 @@ public class Movie {
 
     public void setCategory(String category)
     {
-        this.Category = category;
+        this.Category = MovieEnums.Category.valueOf(category);
     }
 }
