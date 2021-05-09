@@ -23,7 +23,6 @@ public class MovieService
     }
 
     @GetMapping("/{id}")
-    @ResponseBody
     public ResponseEntity<Movie> getMovieById(@PathVariable String id)
     {
         if (Integer.parseInt(id) == 1)
@@ -33,12 +32,20 @@ public class MovieService
     }
 
     @PostMapping("")
-    @ResponseBody
     public ResponseEntity<Movie> addMovieToList(@RequestBody Movie movie)
     {
         if (movie != null)
             return ResponseEntity.ok(movie);
         else
             return (ResponseEntity<Movie>) ResponseEntity.badRequest();
-}
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Movie> putMovieById(@PathVariable String id, @RequestBody Movie movie)
+    {
+        if (movie != null && id != null)
+            return ResponseEntity.ok(movie);
+        else
+            return (ResponseEntity<Movie>) ResponseEntity.badRequest();
+    }
 }
