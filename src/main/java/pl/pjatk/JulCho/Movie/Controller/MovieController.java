@@ -2,7 +2,7 @@ package pl.pjatk.JulCho.Movie.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.pjatk.JulCho.Movie.Model.Movie;
+import pl.pjatk.JulCho.Movie.Model.Movies;
 import pl.pjatk.JulCho.Movie.Service.MovieService;
 import pl.pjatk.JulCho.Utils.Utils;
 
@@ -12,23 +12,28 @@ import java.util.List;
 @RequestMapping("/movies")
 public class MovieController
 {
-    private MovieService movieService = new MovieService();
+    private final MovieService movieService;
+
+    public MovieController(MovieService movieService)
+    {
+        this.movieService = movieService;
+    }
 
     @GetMapping("")
-    public ResponseEntity<List<Movie>> GetAllMovies()
+    public ResponseEntity<List<Movies>> GetAllMovies()
     {
         return ResponseEntity.ok(movieService.GetMoviesList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movie> GetMovieById(@PathVariable String id)
+    public ResponseEntity<Movies> GetMovieById(@PathVariable String id)
     {
         Integer index = Utils.TryParseInt(id);
 
         if (index == null)
             return ResponseEntity.badRequest().build();
 
-        Movie movie = movieService.GetMovieById(index);
+        Movies movie = movieService.GetMovieById(index);
 
         if (movie != null)
             return ResponseEntity.ok(movie);
@@ -37,7 +42,7 @@ public class MovieController
     }
 
     @PostMapping("")
-    public ResponseEntity<Movie> AddMovieToList(@RequestBody Movie movie)
+    public ResponseEntity<Movies> AddMovieToList(@RequestBody Movies movie)
     {
         if (movie != null)
         {
@@ -49,7 +54,7 @@ public class MovieController
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Movie> PutMovieById(@PathVariable String id, @RequestBody Movie movie)
+    public ResponseEntity<Movies> PutMovieById(@PathVariable String id, @RequestBody Movies movie)
     {
         Integer index = Utils.TryParseInt(id);
 

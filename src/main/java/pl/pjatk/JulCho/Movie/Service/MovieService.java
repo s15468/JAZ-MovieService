@@ -1,39 +1,36 @@
 package pl.pjatk.JulCho.Movie.Service;
 
 import org.springframework.stereotype.Service;
-import pl.pjatk.JulCho.Movie.Model.Movie;
-import java.util.ArrayList;
+import pl.pjatk.JulCho.Movie.Model.Movies;
+import pl.pjatk.JulCho.Movie.Repository.MovieRepository;
 import java.util.List;
 
 @Service
 public class MovieService
 {
-    private ArrayList<Movie> moviesList;
+    private final MovieRepository movieRepository;
 
-    public MovieService()
+    public MovieService(MovieRepository movieRepository)
     {
-        moviesList = new ArrayList<>();
+        this.movieRepository = movieRepository;
     }
 
-    public void AddMovie(Movie movie)
+    public void AddMovie(Movies movie)
     {
-        moviesList.add(movie);
+        movieRepository.save(movie);
     }
 
-    public List<Movie> GetMoviesList()
+    public List<Movies> GetMoviesList()
     {
-        return moviesList;
+        return movieRepository.findAll();
     }
 
-    public Movie GetMovieById(int index)
+    public Movies GetMovieById(int index)
     {
-        if (index <= moviesList.size())
-            return moviesList.get(index);
-        else
-            return null;
+        return movieRepository.findBy(index);
     }
 
-    public Boolean PutMovieById(Integer index, Movie movie)
+    public Boolean PutMovieById(Integer index, Movies movie)
     {
         if (movie == null)
             return false;
@@ -48,9 +45,6 @@ public class MovieService
 
     public void DeleteMovieById(Integer index)
     {
-        if (index <= moviesList.size())
-        {
-            moviesList.remove(index);
-        }
+        movieRepository.deleteById(index);
     }
 }
