@@ -17,17 +17,17 @@ public class MovieService
 
     public void AddMovie(Movies movie)
     {
-        movieRepository.save(movie);
+        movieRepository.InsertMovie(movie.getName(), movie.getCategory().toString());
     }
 
     public List<Movies> GetMoviesList()
     {
-        return movieRepository.findAll();
+        return movieRepository.FindAllMovies();
     }
 
     public Movies GetMovieById(int index)
     {
-        return movieRepository.findBy(index);
+        return movieRepository.FindByMovieId(index);
     }
 
     public Boolean PutMovieById(Integer index, Movies movie)
@@ -35,16 +35,14 @@ public class MovieService
         if (movie == null)
             return false;
 
-        if (index == null)
-            moviesList.add(movie);
-        else
-            moviesList.add(index, movie);
+        if (index != null)
+            movieRepository.InsertMovie(index, movie.getName(), movie.getCategory().toString());
 
         return true;
     }
 
     public void DeleteMovieById(Integer index)
     {
-        movieRepository.deleteById(index);
+        movieRepository.DeleteMovieById(index);
     }
 }
