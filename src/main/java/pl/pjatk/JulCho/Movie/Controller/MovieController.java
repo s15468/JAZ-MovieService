@@ -80,10 +80,42 @@ public class MovieController
         }
     }
 
-    @GetMapping("isAvailableTrue")
-    public ResponseEntity<Void> SetIsAvailableToTrue()
+    @GetMapping("AllNotAvailable")
+    public ResponseEntity<Void> SetAllNotAvailable()
     {
-        movieService.SetAvailableToTrue();
+        movieService.SetAllNotAvailable();
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/rentMovie/{id}")
+    public ResponseEntity<Void> RentMovie(@PathVariable String id)
+    {
+        Integer index = Utils.TryParseInt(id);
+
+        if (index != null)
+        {
+            movieService.RentMovie(index);
+            return ResponseEntity.ok().build();
+        }
+        else
+        {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/returnMovie/{id}")
+    public ResponseEntity<Void> ReturnMovie(@PathVariable String id)
+    {
+        Integer index = Utils.TryParseInt(id);
+
+        if (index != null)
+        {
+            movieService.ReturnMovie(index);
+            return ResponseEntity.ok().build();
+        }
+        else
+        {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

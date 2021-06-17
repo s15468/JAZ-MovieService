@@ -46,8 +46,18 @@ public class MovieService
         movieRepository.DeleteMovieById(index);
     }
 
-    public void SetAvailableToTrue()
+    public void SetAllNotAvailable()
     {
-        movieRepository.SetAvailableToTrue(1);
+        movieRepository.SetAllNotAvailable(0);
+    }
+
+    public void RentMovie(Integer index)
+    {
+        movieRepository.SetRentMovieAvailableStatus(0, index);
+    }
+
+    public void ReturnMovie(Integer index)
+    {
+        movieRepository.SetRentMovieAvailableStatus(1, index);
     }
 }

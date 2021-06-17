@@ -34,5 +34,10 @@ public interface MovieRepository extends JpaRepository<Movies, Integer>
     @Transactional
     @Modifying
     @Query(value = "UPDATE Movies m SET m.is_available = :bool")
-    void SetAvailableToTrue(@Param("bool") Integer bool);
+    void SetAllNotAvailable(@Param("bool") Integer bool);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE Movies m SET m.is_available = :bool WHERE m.ID = :id")
+    void SetRentMovieAvailableStatus(@Param("bool") Integer bool, @Param("id") Integer id);
 }

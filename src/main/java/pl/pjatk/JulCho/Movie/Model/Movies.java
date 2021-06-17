@@ -2,7 +2,6 @@ package pl.pjatk.JulCho.Movie.Model;
 
 import pl.pjatk.JulCho.Movie.Enums.Category;
 import javax.persistence.*;
-import java.sql.Types;
 
 @Entity
 public class Movies
