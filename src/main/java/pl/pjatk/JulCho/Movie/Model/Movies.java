@@ -2,6 +2,7 @@ package pl.pjatk.JulCho.Movie.Model;
 
 import pl.pjatk.JulCho.Movie.Enums.Category;
 import javax.persistence.*;
+import java.sql.Types;
 
 @Entity
 public class Movies
@@ -12,6 +13,7 @@ public class Movies
     private String Name;
     @Enumerated(EnumType.STRING)
     private Category Category;
+    private int is_available;
 
     public Category getCategory()
     {
@@ -41,5 +43,14 @@ public class Movies
     public void setName(String name)
     {
         Name = name;
+    }
+
+    public void setIsAvailable() {
+        this.is_available = 1;
+    }
+
+    public int getIsAvailable()
+    {
+        return is_available;
     }
 }

@@ -45,4 +45,9 @@ public class MovieService
     {
         movieRepository.DeleteMovieById(index);
     }
+
+    public void SetAvailableToTrue()
+    {
+        movieRepository.SetAvailableToTrue(1);
+    }
 }

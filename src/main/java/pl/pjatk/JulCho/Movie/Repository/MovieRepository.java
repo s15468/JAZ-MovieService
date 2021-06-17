@@ -30,4 +30,9 @@ public interface MovieRepository extends JpaRepository<Movies, Integer>
     @Modifying
     @Query("delete from Movies m where m.ID=:id")
     void DeleteMovieById(@Param("id") Integer id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE Movies m SET m.is_available = :bool")
+    void SetAvailableToTrue(@Param("bool") Integer bool);
 }

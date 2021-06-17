@@ -79,4 +79,11 @@ public class MovieController
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("isAvailableTrue")
+    public ResponseEntity<Void> SetIsAvailableToTrue()
+    {
+        movieService.SetAvailableToTrue();
+        return ResponseEntity.ok().build();
+    }
 }
